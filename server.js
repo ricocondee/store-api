@@ -17,6 +17,15 @@ app.get("/api/products", (req, res) => {
   });
 });
 
+app.get("/api/categories", (req, res) => {
+  db.all(query.SELECTCAT, (error, data) => {
+    if (error) {
+      console.table(error.message);
+    }
+    res.json(data);
+  });
+});
+
 app.get("/api/menClothing", (req, res) => {
   db.all(query.SELECTMEN, [2], (error, data) => {
     if (error) {
