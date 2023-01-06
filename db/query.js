@@ -1,6 +1,7 @@
 const query = {
     SELECTALL: "SELECT * FROM phones",
     SELECTCAT: "SELECT * FROM categories",
+    SELECTBRANDS: "SELECT * FROM brands",
     SELECTMEN: "SELECT * FROM menClothing WHERE category = ?",
     SELECTWOMEN: "SELECT * FROM womenClothing WHERE category = ?",
     SELECTPHONES: "SELECT * FROM phones WHERE category = ?",
