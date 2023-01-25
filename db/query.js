@@ -1,14 +1,9 @@
 const query = {
-    SELECTALL: "SELECT * FROM phones",
+    SELECTALL: "SELECT * FROM products",
+    SELECTBYID: "SELECT * FROM products WHERE id = ?",
+    SELECTBYTYPE: "SELECT p.* FROM products p INNER JOIN typeOf t ON t.id = p.type AND t.name = ?",
     SELECTCAT: "SELECT * FROM categories",
     SELECTBRANDS: "SELECT * FROM brands",
-    SELECTMEN: "SELECT * FROM menClothing WHERE category = ?",
-    SELECTWOMEN: "SELECT * FROM womenClothing WHERE category = ?",
-    SELECTPHONES: "SELECT * FROM phones WHERE category = ?",
-    SELECTLAPTOPS: "SELECT * FROM laptops WHERE category = ?",
-    SELECTHEADP: "SELECT * FROM headPhones WHERE category = ?",
-    SELECTWATCHES: "SELECT * FROM watches WHERE category = ?",
-    SELECTSMARTW: "SELECT * FROM smartWatches WHERE category = ?",
   };
   
   module.exports = query;
