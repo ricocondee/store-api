@@ -17,6 +17,31 @@ app.get("/api/products", (req, res) => {
   });
 });
 
+app.get("/api/products/:id", (req, res) => {
+  const productId = req.params.id
+  db.all(query.SELECTBYID, [productId], (error, data) => {
+    if (error) {
+      console.table(error.message);
+    }
+    res.json(data);
+  });
+});
+
+app.get("/api/products/type/:type", (req, res) => {
+  const productType = req.params.type
+  db.all(query.SELECTBYTYPE, [productType], (error, data) => {
+    if (error) {
+      console.table(error.message);
+    }
+    else if (data.length !== 0){
+      res.json(data);
+    }
+    else{
+      res.json("There's no such type")
+    }
+  });
+});
+
 app.get("/api/categories", (req, res) => {
   db.all(query.SELECTCAT, (error, data) => {
     if (error) {
@@ -35,68 +60,7 @@ app.get("/api/brands", (req, res) => {
   });
 });
 
-app.get("/api/menClothing", (req, res) => {
-  db.all(query.SELECTMEN, [2], (error, data) => {
-    if (error) {
-      console.table(error.message);
-    }
-    res.json(data);
-  });
-});
 
-app.get("/api/womenClothing", (req, res) => {
-  db.all(query.SELECTWOMEN, [3], (error, data) => {
-    if (error) {
-      console.table(error.message);
-    }
-    res.json(data);
-  });
-});
-
-app.get("/api/electronics/phones", (req, res) => {
-  db.all(query.SELECTPHONES, [1], (error, data) => {
-    if (error) {
-      console.table(error.message);
-    }
-    res.json(data);
-  });
-});
-
-app.get("/api/electronics/headPhones", (req, res) => {
-  db.all(query.SELECTHEADP, [1], (error, data) => {
-    if (error) {
-      console.table(error.message);
-    }
-    res.json(data);
-  });
-});
-
-app.get("/api/electronics/smartWatches", (req, res) => {
-  db.all(query.SELECTSMARTW, [1], (error, data) => {
-    if (error) {
-      console.table(error.message);
-    }
-    res.json(data);
-  });
-});
-
-app.get("/api/electronics/laptops", (req, res) => {
-  db.all(query.SELECTLAPTOPS, [1], (error, data) => {
-    if (error) {
-      console.table(error.message);
-    }
-    res.json(data);
-  });
-});
-
-app.get("/api/accesories/watches", (req, res) => {
-  db.all(query.SELECTWATCHES, [4], (error, data) => {
-    if (error) {
-      console.table(error.message);
-    }
-    res.json(data);
-  });
-});
 
 app.listen(port, () => {
   console.log(`server listening on port http://localhost:${port}`);
