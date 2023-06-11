@@ -60,6 +60,16 @@ app.get("/api/brands", (req, res) => {
   });
 });
 
+app.get("/api/products/search/:search", (req, res) => {
+  const productSearch = `%${req.params.search}%`
+  db.all(query.SELECTLIKE, [productSearch], (error, data) => {
+    if (error) {
+      console.table(error.message);
+    }
+    res.json(data);
+  });
+});
+
 
 
 app.listen(port, () => {
