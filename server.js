@@ -9,7 +9,9 @@ app.use(cors());
 const port = process.env.PORT || 8000;
 
 app.get("/api/products", (req, res) => {
-  db.all(query.SELECTALL, (error, data) => {
+  const LIMIT = req.query.limit || 36;
+  const OFFSET = req.query.offset || 0;
+  db.all(query.SELECTFILTERED, [LIMIT], [OFFSET], (error, data) => {
     if (error) {
       console.table(error.message);
     }
